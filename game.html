@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Myth or Fact? | NZ Pharmacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0057A8;--green:#00A651;--bg:#F3F8FC;--card:#fff;--ink:#12263A;--soft:#5B6F82;--bad:#D6453D;--line:#D8E4EE;--link:#0057A8;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1A28;--card:#152638;--ink:#EAF2F9;--soft:#9DB2C6;--line:#25405A;--link:#8CC4FF}}
+:root[data-theme="dark"]{--bg:#0D1A28;--card:#152638;--ink:#EAF2F9;--soft:#9DB2C6;--line:#25405A;--link:#8CC4FF}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;min-height:100vh;display:flex;justify-content:center}
+main{width:100%;max-width:460px;padding:18px 18px 28px;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3,.big{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;margin:0;line-height:1.1}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:40px;height:40px;flex:none}
+.brand b{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-size:19px;color:var(--blue);display:block;line-height:1.1}
+.brand span{font-size:13px;color:var(--soft)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .brand b{color:#8CC4FF}}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--soft);font-size:14px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .35s}
+#tbar i{background:var(--green);transition:none}
+#tbar.low i{background:var(--bad)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:26px 22px;min-height:200px;display:flex;align-items:center}
+.card h2{font-size:25px;font-weight:700}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{font:inherit;cursor:pointer;border:0;border-radius:16px;padding:18px 10px;font-family:"Bricolage Grotesque",Figtree,sans-serif;font-weight:800;font-size:22px;color:#fff;min-height:60px}
+button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.myth{background:var(--bad)}.fact{background:var(--green)}
+.main{background:var(--blue);width:100%;font-size:18px}
+.ghost{background:transparent;color:var(--link);border:2px solid var(--link);width:100%;font-size:17px}
+.fb{border-radius:18px;padding:18px;border-left:8px solid;background:var(--card);display:none}
+.fb.show{display:block}.fb.ok{border-color:var(--green)}.fb.no{border-color:var(--bad)}
+.fb b{font-family:"Bricolage Grotesque",Figtree,sans-serif;font-size:20px;display:block;margin-bottom:6px}
+.fb p{margin:0 0 14px;line-height:1.5}
+.hidden{display:none!important}
+.hero{text-align:center;padding:10px 0 0}
+.hero .big{font-size:44px;font-weight:800;color:var(--blue)}
+.hero .big span{color:var(--green)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero .big,:root:not([data-theme="light"]) .score .big{color:#8CC4FF}}
+.hero p{color:var(--soft);line-height:1.5;margin:12px 0 0;font-size:16px}
+h3{font-size:17px;margin:4px 0 -4px}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cat{background:var(--card);color:var(--ink);border:2px solid var(--line);text-align:left;padding:14px;font-size:17px;min-height:78px;display:flex;flex-direction:column;gap:4px;border-radius:16px}
+.cat small{font-family:Figtree,sans-serif;font-weight:400;font-size:13px;color:var(--soft);line-height:1.3}
+.cat.mix{grid-column:1/-1;background:var(--blue);color:#fff;border-color:var(--blue)}
+.cat.mix small{color:#D7E8FA}
+.cat:hover{border-color:var(--green)}
+.tog{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:12px 14px;font-weight:600;font-size:15px}
+.tog input{width:22px;height:22px;accent-color:var(--green)}
+.lb{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px}
+.lb ol{margin:8px 0 0;padding:0;list-style:none}
+.lb li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
+.lb li:first-child{border-top:0}
+.lb li span:last-child{font-weight:600;white-space:nowrap}
+.lb em{color:var(--soft);font-style:normal;font-size:14px}
+.score{text-align:center;padding-top:6px}
+.score .big{font-size:78px;font-weight:800;color:var(--blue)}
+.score h2{font-size:26px;margin:6px 0 6px}
+.score p{color:var(--soft);line-height:1.5;margin:0 0 6px}
+.pts{font-weight:600;margin-bottom:16px!important}
+.stack{display:flex;flex-direction:column;gap:12px}
+.nm{display:flex;gap:10px}
+.nm input{flex:1;min-width:0;font:inherit;font-size:17px;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.nm button{width:auto;padding:14px 18px;font-size:16px}
+footer{text-align:center;color:var(--soft);font-size:13px;line-height:1.5;margin-top:auto;padding-top:8px}
+footer b{color:var(--green)}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <svg viewBox="0 0 40 40" role="img" aria-label="NZ Pharmacy mark"><rect width="40" height="40" rx="10" fill="#0057A8"/><rect x="16" y="7" width="8" height="26" rx="2" fill="#00A651"/><rect x="7" y="16" width="26" height="8" rx="2" fill="#fff"/></svg>
+    <div><b>NZ Pharmacy</b><span>nurturing your health</span></div>
+  </div>
+
+  <section id="start">
+    <div class="hero">
+      <div class="big">Myth<br>or <span>Fact?</span></div>
+      <p>10 questions. 15 seconds each. Pick a topic and see if you can tell what is true.</p>
+    </div>
+    <div style="height:16px"></div>
+    <div class="stack">
+      <h3>Choose a topic</h3>
+      <div class="cats" id="cats"></div>
+      <label class="tog"><span>Timer (15 seconds per question)</span><input type="checkbox" id="timerOn" checked></label>
+      <div class="lb" id="lbStart"></div>
+    </div>
+  </section>
+
+  <section id="play" class="hidden">
+    <div class="top"><span id="count">1 / 10</span><span id="streak"></span><span id="secs"></span></div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="bar" id="tbar"><i></i></div>
+    <div class="card"><h2 id="q"></h2></div>
+    <div class="btns" id="choices">
+      <button class="myth" data-a="0">Myth</button>
+      <button class="fact" data-a="1">Fact</button>
+    </div>
+    <div class="fb" id="fb" role="status" aria-live="polite"><b id="fbt"></b><p id="fbp"></p><button class="main" id="next">Next</button></div>
+  </section>
+
+  <section id="end" class="score hidden">
+    <div class="big" id="sc"></div>
+    <h2 id="verdict"></h2>
+    <p id="vtext"></p>
+    <p class="pts" id="pts"></p>
+    <div class="stack">
+      <div class="nm" id="nmBox"><input id="nm" maxlength="16" placeholder="Your name" aria-label="Your name"><button class="main" id="save">Save score</button></div>
+      <div class="lb" id="lbEnd" style="text-align:left"></div>
+      <button class="main" id="share">Copy my score to share</button>
+      <button class="ghost" id="again">Play this topic again</button>
+      <button class="ghost" id="home">Choose another topic</button>
+    </div>
+  </section>
+
+  <footer>Follow <b>@nzpharmacy_ltd</b> for more health tips.<br>Not sure about a medicine? Ask your pharmacist.</footer>
+</main>
+
+<script>
+var CATS={
+safe:{n:"Medicine safety",d:"Using medicines the right way",q:[
+["Antibiotics can cure a cold or the flu.",0,"Colds and flu are caused by viruses. Antibiotics only work on bacteria, and using them when they are not needed helps germs become resistant."],
+["It is fine to stop your antibiotics as soon as you feel better.",0,"Take the full course exactly as prescribed or advised. Stopping early can let the infection come back stronger."],
+["Taking too much paracetamol can seriously damage your liver.",1,"Paracetamol is safe at the right dose, but going above the daily limit is dangerous. Always follow the label."],
+["Taking a double dose of a painkiller makes it work faster.",0,"It only raises the risk of side effects and overdose. If pain is not easing, speak to a pharmacist or doctor."],
+["Expired medicines can be less effective, and some can be unsafe.",1,"Expiry dates tell you how long the maker guarantees the medicine works properly. Do not use medicine past its date."],
+["If a product is herbal, it is always safe.",0,"Herbal products can have side effects and can clash with other medicines. Tell your pharmacist everything you take."],
+["Heat and humidity can spoil medicines, so a hot car or a damp bathroom is a bad place to store them.",1,"Keep medicines in a cool, dry place away from direct sunlight and out of reach of children."],
+["It is safe to share your prescription with a relative who has the same symptoms.",0,"Similar symptoms can have different causes. The right medicine and dose depends on the person, so each person needs their own advice."],
+["Using two different cold or pain products together can cause an accidental double dose.",1,"Many products contain the same ingredient, such as paracetamol. Check labels, or ask your pharmacist before combining them."],
+["Sweet-tasting syrups are safe for a child to drink in large amounts.",0,"Syrups are still medicine. Taking too much can be harmful, so store them out of children's sight and reach."]
+]},
+daily:{n:"Everyday health",d:"Habits, fevers and malaria",q:[
+["Washing your hands with soap and water helps prevent many infections.",1,"Scrub for about 20 seconds, including between fingers and under nails. It is one of the simplest ways to stay well."],
+["Taking vitamin C every day means you will never catch a cold.",0,"Vitamin C supports your body, but it does not make you immune to colds. Good sleep, food and handwashing matter too."],
+["Everyone needs exactly 8 glasses of water every day.",0,"How much you need depends on your body, the weather and how active you are. Pale yellow urine is a handy sign you are drinking enough."],
+["Malaria is caused by drinking dirty water or working in the sun.",0,"Malaria is spread by the bite of an infected mosquito. If you have fever, get tested before taking treatment."],
+["Sleeping under a treated mosquito net helps protect you from malaria.",1,"Nets keep mosquitoes away while you sleep, which is when many bites happen."],
+["A fever is a sign that your body may be fighting an infection.",1,"Fever is a symptom, not a disease. Find out the cause, and see a health professional if it is high or does not go away."],
+["Cracking your knuckles gives you arthritis.",0,"Studies have not found a link between knuckle cracking and arthritis."],
+["You can have high blood pressure and feel completely fine.",1,"It often has no symptoms, which is why regular blood pressure checks matter."],
+["Most adults need around 7 or more hours of sleep a night.",1,"Regular short sleep affects mood, focus and long-term health."],
+["Cold weather by itself gives you a cold.",0,"Colds are caused by viruses. They spread more in cold seasons because people spend more time close together indoors."]
+]},
+skin:{n:"Skin and sun",d:"Sunscreen, acne and creams",q:[
+["People with dark skin do not need sunscreen.",0,"Darker skin has more natural protection, but it can still be damaged by UV rays. Sunscreen still helps, especially against dark patches."],
+["You only need sunscreen on bright, sunny days.",0,"UV rays can get through clouds. Daily protection is the safer habit."],
+["Many skin lightening creams contain ingredients that can thin and damage the skin.",1,"Some contain strong steroids or other harsh substances. Ask your pharmacist before using any lightening product."],
+["Putting toothpaste on a pimple clears it up.",0,"Toothpaste can irritate and burn your skin. Gentle cleansing and proper acne products work better."],
+["Squeezing pimples can lead to scars and dark marks.",1,"Picking pushes inflammation deeper into the skin. Leave them alone or ask a pharmacist for a spot treatment."],
+["A higher SPF means you never have to reapply sunscreen.",0,"Sunscreen wears off with sweat, water and rubbing. Reapply about every 2 hours when you are outside."],
+["Wearing a hat and sunglasses helps protect you from UV damage.",1,"They protect your face and eyes. Use them together with sunscreen."],
+["Using a strong steroid cream for a long time without advice is safe.",0,"Long-term use can thin the skin and cause other problems. Use steroid creams only as advised."],
+["Moisturiser works best when applied on slightly damp skin.",1,"It helps seal in water after bathing, which keeps skin soft."],
+["Drinking more water alone will clear acne.",0,"Water is good for you, but acne is mainly linked to oil, bacteria and hormones. A good skin routine helps."]
+]},
+kids:{n:"Family and kids",d:"Safe care for little ones",q:[
+["Adult medicines are fine for children if you give a smaller amount.",0,"Children need medicines and doses made for their age and weight. Always check with a pharmacist or doctor first."],
+["Aspirin is a good choice to bring down a child's fever.",0,"Aspirin is usually not given to children with fever because of a rare but serious illness called Reye's syndrome. Ask a pharmacist for a safer option."],
+["Teething causes a high fever.",0,"Teething can make a baby fussy, but a high fever usually means something else. Get it checked."],
+["Oral rehydration solution (ORS) helps treat dehydration from diarrhoea.",1,"ORS replaces the water and salts lost. Seek help quickly if a child cannot keep fluids down or is very sleepy."],
+["Health experts recommend breast milk alone for a baby's first 6 months.",1,"After 6 months, safe foods are added while breastfeeding continues."],
+["Every cough in a child needs an antibiotic.",0,"Most coughs come from viruses, which antibiotics do not treat. A health professional can tell when treatment is needed."],
+["Vaccines help protect children from serious diseases.",1,"Keep to the immunisation schedule and ask at your nearest clinic if you missed a dose."],
+["Use the measuring cup or syringe that comes with the medicine, not a kitchen spoon.",1,"Kitchen spoons vary a lot in size, so the dose can end up too high or too low."],
+["Rubbing alcohol on a child's skin is a safe way to bring down a fever.",0,"Alcohol can be absorbed through the skin and cause harm. Dress the child lightly, give fluids and seek advice."],
+["A feverish child who is very drowsy or has a stiff neck needs urgent medical care.",1,"These can be signs of a serious illness. Do not wait at home."]
+]}
+};
+var ORDER=["safe","daily","skin","kids"];
+var $=function(i){return document.getElementById(i)};
+var Q,i,score,pts,streak,best,locked,cat,tLeft,tId,timerOn,secs=15;
+
+function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem(k))}localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t}return a}
+function show(id){["start","play","end"].forEach(function(s){$(s).classList.toggle("hidden",s!==id)});window.scrollTo(0,0)}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+
+function buildCats(){var h="";
+  ORDER.forEach(function(k){h+='<button class="cat" data-c="'+k+'">'+esc(CATS[k].n)+'<small>'+esc(CATS[k].d)+'</small></button>'});
+  h+='<button class="cat mix" data-c="mix">Mixed topics<small>Questions from every topic</small></button>';
+  $("cats").innerHTML=h}
+function lbHtml(){var b=store("nzp_lb")||[];
+  if(!b.length)return "<h3>Leaderboard on this device</h3><p><em style='color:var(--soft)'>No scores yet. Play a round to be first.</em></p>";
+  var h="<h3>Leaderboard on this device</h3><ol>";
+  b.forEach(function(r,n){h+="<li><span>"+(n+1)+". "+esc(r.n)+" <em>"+esc(r.c)+"</em></span><span>"+r.p+" pts</span></li>"});
+  return h+"</ol>"}
+function refreshLb(){$("lbStart").innerHTML=lbHtml();$("lbEnd").innerHTML=lbHtml()}
+
+function begin(c){cat=c;timerOn=$("timerOn").checked;
+  var pool=[];
+  if(c==="mix"){ORDER.forEach(function(k){pool=pool.concat(CATS[k].q)})}else{pool=CATS[c].q}
+  Q=shuffle(pool).slice(0,10);i=0;score=0;pts=0;streak=0;best=0;saved=false;
+  $("tbar").classList.toggle("hidden",!timerOn);show("play");render()}
+function render(){locked=false;$("q").textContent=Q[i][0];$("count").textContent=(i+1)+" / 10";$("prog").style.width=(i/10*100)+"%";
+  $("streak").textContent=streak>1?streak+" in a row":"";$("fb").classList.remove("show");$("choices").classList.remove("hidden");startTimer()}
+function startTimer(){clearInterval(tId);
+  if(!timerOn){$("secs").textContent="";return}
+  tLeft=secs;tick();
+  tId=setInterval(function(){tLeft=Math.max(0,tLeft-0.1);tick();if(tLeft<=0){clearInterval(tId);answer(-1)}},100)}
+function tick(){$("secs").textContent=Math.ceil(tLeft)+"s";$("tbar").firstElementChild.style.width=(tLeft/secs*100)+"%";$("tbar").classList.toggle("low",tLeft<=5)}
+function answer(a){if(locked)return;locked=true;clearInterval(tId);
+  var q=Q[i],ok=(a===q[1]);
+  if(ok){score++;streak++;if(streak>best)best=streak;pts+=100+(timerOn?Math.round(tLeft)*5:0)}else{streak=0}
+  var fb=$("fb");fb.className="fb show "+(ok?"ok":"no");
+  var lead=ok?"Correct. ":(a===-1?"Time is up. ":"Not quite. ");
+  $("fbt").textContent=lead+"It is a "+(q[1]?"fact":"myth")+".";
+  $("fbp").textContent=q[2];$("choices").classList.add("hidden");
+  $("next").textContent=i===9?"See my score":"Next";$("next").focus()}
+var saved=false;
+function finish(){show("end");$("prog").style.width="100%";$("sc").textContent=score+"/10";
+  var v=score>=9?["Health Hero","You really know your stuff. Share this and challenge a friend."]:score>=7?["Well informed","Strong score. A few myths slipped through, so they are worth a second look."]:score>=4?["Getting there","Many of these myths are very common. Now you know the facts."]:["Time to learn","Do not worry, most people believe these myths. Play again and see how much you remember."];
+  $("verdict").textContent=v[0];$("vtext").textContent=v[1];
+  $("pts").textContent=pts+" points"+(best>1?" · best streak "+best:"");
+  $("nmBox").classList.remove("hidden");$("save").textContent="Save score";
+  var last=store("nzp_name");if(last)$("nm").value=last;refreshLb()}
+function catName(){return cat==="mix"?"Mixed":CATS[cat].n}
+function saveScore(){if(saved)return;var n=($("nm").value||"").trim()||"Player";
+  var b=store("nzp_lb")||[];b.push({n:n,p:pts,c:catName()});
+  b.sort(function(x,y){return y.p-x.p});b=b.slice(0,5);store("nzp_lb",b);store("nzp_name",n);
+  saved=true;$("nmBox").classList.add("hidden");refreshLb()}
+
+$("cats").onclick=function(e){var b=e.target.closest("button");if(b)begin(b.dataset.c)};
+$("again").onclick=function(){begin(cat)};
+$("home").onclick=function(){refreshLb();show("start")};
+$("choices").onclick=function(e){var b=e.target.closest("button");if(b)answer(+b.dataset.a)};
+$("next").onclick=function(){if(i===9){finish()}else{i++;render()}};
+$("save").onclick=saveScore;
+$("share").onclick=function(){var t="I scored "+score+"/10 ("+pts+" points) on the NZ Pharmacy Myth or Fact game: "+catName()+". Can you beat me? @nzpharmacy_ltd";
+  var done=function(){$("share").textContent="Copied. Paste it anywhere";setTimeout(function(){$("share").textContent="Copy my score to share"},2200)};
+  try{navigator.clipboard.writeText(t).then(done,function(){$("share").textContent=t})}catch(e){$("share").textContent=t}};
+buildCats();refreshLb();
+</script>
+</body>
+</html>
